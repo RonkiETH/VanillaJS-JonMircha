@@ -24,6 +24,7 @@
 class Pelicula {
     constructor({ id, titulo, director, estreno, pais, generos, calificacion }) {
         this.id = id;
+        this.titulo = titulo;
         this.director = director;
         this.estreno = estreno;
         this.pais = pais;
@@ -36,6 +37,7 @@ class Pelicula {
         this.validarEstreno(estreno);
         this.validarPais(pais);
         this.validarGeneros(generos);
+        this.validarCalificacion(calificacion);
     }
 
     static get listaGeneros() {
@@ -121,14 +123,60 @@ class Pelicula {
             }
         }
     }
+
+    validarCalificacion(calificacion) {
+        if (this.validarNumero("Calificacion", calificacion)) {
+            return (calificacion < 0 || calificacion > 10)
+                ? console.error("La calificación tiene que ser entre 0 y 10")
+                : this.calificacion = calificacion.toFixed(1);
+        }
+    }
+
+    fichaTecnica() {
+        console.info(`Ficha Técnica:\nTítulo: ${this.titulo}\nDirector: ${this.director}\nAño: ${this.estreno}\nPaís: ${this.pais.join("-")}\nGéneros: ${this.generos.join(", ")}\nCalificación: ${this.calificacion}\nIMDB id: ${this.id}`)
+    }
 }
 
-Pelicula.generosAceptados();
-const pelicula = new Pelicula({
-    id: "tt1234567",
-    titulo: "Buscando a Nemo",
-    director: "Ronki",
-    estreno: 2023,
-    pais: ["Argentina"],
-    generos: ["Comedy", "Thriller"]
-})
+// const pelicula = new Pelicula({
+//     id: "tt1234567",
+//     titulo: "Buscando a Nemo",
+//     director: "Ronki",
+//     estreno: 2023,
+//     pais: ["Argentina"],
+//     generos: ["Comedy", "Thriller"],
+//     calificacion: 9.2
+// })
+
+// pelicula.fichaTecnica();
+
+const peliculas = [
+    {
+        id: "tt1234567",
+        titulo: "Buscando a Nemo",
+        director: "Ronki",
+        estreno: 2023,
+        pais: ["Argentina"],
+        generos: ["Comedy", "Thriller"],
+        calificacion: 9.2
+    },
+    {
+        id: "cc1234567",
+        titulo: "Rocky",
+        director: "Ronki",
+        estreno: 2000,
+        pais: ["USA"],
+        generos: ["Action"],
+        calificacion: 8.1
+    },
+    {
+        id: "dd1234567",
+        titulo: "Star Wars",
+        director: "Ronki",
+        estreno: 1987,
+        pais: ["USA"],
+        generos: ["Action", "Sci-Fi"],
+        calificacion: 9.7
+    },
+]
+
+peliculas.forEach((pelicula) => new Pelicula(pelicula).fichaTecnica());
