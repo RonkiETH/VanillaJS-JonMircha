@@ -33,6 +33,7 @@ class Pelicula {
         this.validarIMDB(id);
         this.validarTitulo(titulo);
         this.validarDirector(director);
+        this.validarEstreno(estreno);
     }
 
     validarCadena(propiedad, valor) {
@@ -49,9 +50,15 @@ class Pelicula {
         return true;
     }
 
+    validarNumero(propiedad, valor) {
+        if (!valor) return console.warn(`${propiedad} "${valor}" está vacío`)
+
+        if(typeof valor !== "number") return console.error(`${propiedad} "${valor} ingresado no es un número"`)
+    }
+
     validarIMDB(id) {
         if (this.validarCadena("IMDB id", id)) {
-            if (!(/^([a-z]){2}([0-9]){7}$.test(id)/)) {
+            if (!(/^([a-z]){2}([0-9]){7}$/.test(id))) {
                 return console.error(`IMDB id: "${id} no es válido, debe tener 9 caracteres, los 2 primeros letras minúsculas y los 7 restantes, números"`)
             }
         }
@@ -68,10 +75,19 @@ class Pelicula {
             this.validarLongitudCadena("Director", director, 50);
         }
     }
+
+    validarEstreno(estreno) {
+        if (this.validarNumero("Año de estreno", estreno)) {
+            if (!(/^$([0-9]{4})/.test(estreno))) {
+                return console.error(`Año de estreno: "${estreno} no es válido, debe ser un número de 4 dígitos`)
+            }
+        }
+    }
 }
 
 const pelicula = new Pelicula({
     id: "tt1234567",
     titulo: "Buscando a Nemo",
-    director: "Ronki"
+    director: "Ronki",
+    estreno: 2023,
 })
