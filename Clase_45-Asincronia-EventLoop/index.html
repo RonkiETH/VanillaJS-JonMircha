@@ -8,48 +8,77 @@
 <body>
     <script>
         // Código Síncrono Bloqueante
-        (() => {    
-            console.log("Código Síncrono");
-            console.log("Inicio");
+        // (() => {    
+        //     console.log("Código Síncrono");
+        //     console.log("Inicio");
 
-            function dos() {
-                console.log("Dos");
-            }
+        //     function dos() {
+        //         console.log("Dos");
+        //     }
 
-            function uno() {
-                console.log("Uno");
-                dos();
-                console.log("Tres");
-            }
+        //     function uno() {
+        //         console.log("Uno");
+        //         dos();
+        //         console.log("Tres");
+        //     }
 
-            uno();
-            console.log("Fín");
-        })();
+        //     uno();
+        //     console.log("Fín");
+        // })();
 
-        console.log("********************");
+        // console.log("********************");
 
-        // Código Asíncrono No Bloqueante
-        (() => {
-            console.log("Código Asíncrono");
-            console.log("Inicio");
+        // // Código Asíncrono No Bloqueante
+        // (() => {
+        //     console.log("Código Asíncrono");
+        //     console.log("Inicio");
 
-            function dos() {
-                setTimeout(function () {
-                    console.log("Dos");
-                }, 1000);
-            }
+        //     function dos() {
+        //         setTimeout(function () {
+        //             console.log("Dos");
+        //         }, 1000);
+        //     }
 
-            function uno() {
-                setTimeout(function () {
-                    console.log("Uno");
-                }, 0);
-                dos();
-                console.log("Tres");
-            }
+        //     function uno() {
+        //         setTimeout(function () {
+        //             console.log("Uno");
+        //         }, 0);
+        //         dos();
+        //         console.log("Tres");
+        //     }
 
-            uno();
-            console.log("Fín");
-        })();
+        //     uno();
+        //     console.log("Fín");
+        // })();
+
+        function cuadradoCallBack(value, callback) {
+            setTimeout(() => {
+                callback(value, value * value);
+            }, 0 | Math.random() * 1000);
+        }
+
+        cuadradoCallBack(0, (value, result) => {
+            console.log("Inicia Callback");
+            console.log(`Callback: ${value}, ${result}`);
+            cuadradoCallBack(1, (value, result) => {
+                console.log(`Callback: ${value}, ${result}`);
+                cuadradoCallBack(2, (value, result) => {
+                    console.log(`Callback: ${value}, ${result}`);
+                    cuadradoCallBack(3, (value, result) => {
+                        console.log(`Callback: ${value}, ${result}`);
+                        cuadradoCallBack(4, (value, result) => {
+                            console.log(`Callback: ${value}, ${result}`);
+                            cuadradoCallBack(5, (value, result) => {
+                                console.log(`Callback: ${value}, ${result}`);
+                            })
+                        })
+                    })
+                })
+            })
+        })
+
+        
+
     </script>
 </body>
 </html>
