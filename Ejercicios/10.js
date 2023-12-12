@@ -34,6 +34,16 @@ class Pelicula {
         this.validarTitulo(titulo);
         this.validarDirector(director);
         this.validarEstreno(estreno);
+        this.validarPais(pais);
+        this.validarGeneros(generos);
+    }
+
+    static get listaGeneros() {
+        return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary" ,"Drama", "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller", "War", "Western"]
+    }
+
+    static generosAceptados() {
+        return console.info(`Los géneros aceptados son: ${Pelicula.listaGeneros.join(", ")}`);
     }
 
     validarCadena(propiedad, valor) {
@@ -54,6 +64,18 @@ class Pelicula {
         if (!valor) return console.warn(`${propiedad} "${valor}" está vacío`)
 
         if(typeof valor !== "number") return console.error(`${propiedad} "${valor} ingresado no es un número"`)
+    }
+
+    validarArreglo(propiedad, valor) {
+        if(!valor) return console.warn(`${propiedad} "${valor} está vacío"`);
+
+        if(!(valor instanceof Array)) return console.error(`${propiedad} "${valor} no tiene datos"`);
+
+        for (let cadena of valor) {
+            if(typeof cadena !== "string") return console.error(`El valor ${cadena} ingresado, NO es una cadena de texto`);
+        }
+
+        return true;
     }
 
     validarIMDB(id) {
@@ -83,11 +105,30 @@ class Pelicula {
             }
         }
     }
+
+    validarPais(pais) {
+        this.validarArreglo("País", pais);
+    }
+
+    validarGeneros(generos) {
+        if (this.validarArreglo("Géneros", generos)) {
+            for (let genero of generos) {
+                console.log(genero, Pelicula.listaGeneros.includes(genero));
+                if(!Pelicula.listaGeneros.includes(genero)) {
+                    return console.error(`Género(s) incorrectos ${generos.join(", ")}`);
+                    Pelicula.generosAceptados();
+                }
+            }
+        }
+    }
 }
 
+Pelicula.generosAceptados();
 const pelicula = new Pelicula({
     id: "tt1234567",
     titulo: "Buscando a Nemo",
     director: "Ronki",
     estreno: 2023,
+    pais: ["Argentina"],
+    generos: ["Comedy", "Thriller"]
 })
