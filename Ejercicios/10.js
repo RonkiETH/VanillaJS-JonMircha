@@ -31,12 +31,20 @@ class Pelicula {
         this.calificacion = calificacion;
 
         this.validarIMDB(id);
+        this.validarTitulo(titulo);
+        this.validarDirector(director);
     }
 
     validarCadena(propiedad, valor) {
         if(!valor) return console.warn(`${propiedad} "${valor} está vacío"`);
 
         if(typeof valor !== "string") return console.error(`${propiedad} "${valor} ingresado, NO es una cadena de texto"`)
+
+        return true;
+    }
+
+    validarLongitudCadena(propiedad, valor, longitud) {
+        if(valor.length > longitud) return console.error(`${propiedad} "${valor}" excede el número de caracteres permitidos (${longitud})`);
 
         return true;
     }
@@ -48,8 +56,22 @@ class Pelicula {
             }
         }
     }
+
+    validarTitulo(titulo) {
+        if (this.validarCadena("Título", titulo)) {
+            this.validarLongitudCadena("Título", titulo, 100);
+        }
+    }
+
+    validarDirector(director) {
+        if (this.validarCadena("Director", director)) {
+            this.validarLongitudCadena("Director", director, 50);
+        }
+    }
 }
 
 const pelicula = new Pelicula({
-    id: "ab1234467"
+    id: "tt1234567",
+    titulo: "Buscando a Nemo",
+    director: "Ronki"
 })
