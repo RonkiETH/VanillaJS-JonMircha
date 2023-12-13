@@ -91,10 +91,23 @@
         juan.nombre = "Juan Ignacio";
         juan.apellido = "Ronquillo";
         juan.edad = 21;
-        juan.twitter = "@Ronkijs"
+        // juan.twitter = "@Ronkijs"
 
         console.log(juan);
         console.log(persona);
+
+        let aleatorio = Math.round(Math.random() * 100 + 5);
+
+        const objUsuarios = {
+            [`id_${aleatorio}`]: "Valor Aleatorio"
+        }
+        const usuarios = ["Jon", "Irma", "Miguel", "Kala", "Tomi"];
+
+        console.log(objUsuarios);
+
+        usuarios.forEach((usuario, index) => objUsuarios[`id_${index}`] = usuario);
+
+        console.log(objUsuarios);
     </script>
 </body>
 </html>
