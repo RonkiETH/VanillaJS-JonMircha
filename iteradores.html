@@ -7,21 +7,62 @@
 </head>
 <body>
     <script>
-        const iterable = [1,2,3,4,5];
+        // const iterable = [1,2,3,4,5];
 
-        //Accedemos al iterador del iterable
-        const iterador = iterable[Symbol.iterator]();
+        // //Accedemos al iterador del iterable
+        // const iterador = iterable[Symbol.iterator]();
 
-        console.log(iterable);
-        console.log(iterador);
+        // console.log(iterable);
+        // console.log(iterador);
 
-        console.log(iterador.next());
+        // console.log(iterador.next());
 
-        let next = iterador.next();
+        // let next = iterador.next();
 
-        while (!next.done) {
-            console.log(next.value);
-            next = iterador.next();
+        // while (!next.done) {
+        //     console.log(next.value);
+        //     next = iterador.next();
+        // }
+
+        function* iterable() {
+            yield "hola";
+            console.log("Hola consola");
+            yield "hola 2";
+            console.log("Continuán las instrucciones");
+            yield "hola 3";
+            yield "hola 4";
+        }
+
+        let iterador = iterable();
+        for (let y of iterador) {
+            console.log(y);
+        }
+
+        const arr = [...iterable()];
+        console.log(arr);
+
+        function cuadrado(valor) {
+            setTimeout(() => {
+                return console.log({valor, resultado: valor * valor});
+            }, Math.random() * 1000);
+        }
+
+        function* generador() {
+            console.log("Inicia Generator");
+            yield cuadrado(0);
+            yield cuadrado(1);
+            yield cuadrado(2);
+            yield cuadrado(3);
+            yield cuadrado(4);
+            yield cuadrado(5);
+
+            console.log("Finaliza Generator");
+        }
+
+        let gen = generador();
+
+        for (const yield of gen) {
+            console.log(yield);
         }
     </script>
 </body>
