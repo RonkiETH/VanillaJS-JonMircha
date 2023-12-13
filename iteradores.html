@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const iterable = [1,2,3,4,5];
+
+        //Accedemos al iterador del iterable
+        const iterador = iterable[Symbol.iterator]();
+
+        console.log(iterable);
+        console.log(iterador);
+
+        console.log(iterador.next());
+
+        let next = iterador.next();
+
+        while (!next.done) {
+            console.log(next.value);
+            next = iterador.next();
+        }
+    </script>
+</body>
+</html>
