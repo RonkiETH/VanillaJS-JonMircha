@@ -1,0 +1,11 @@
+{
+    "string": "Ronki",
+    "number": 21,
+    "boolean": true,
+    "array": ["gym", "programar", "jugar"],
+    "object": {
+        "twitter": "ronki.js",
+        "email": "ronquillojuanignacio@gmail.com"
+    },
+    "null": null
+}
