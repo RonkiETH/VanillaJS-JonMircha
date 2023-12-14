@@ -109,61 +109,106 @@
 
         // console.log(objUsuarios);
 
+        // console.log(this);
+        // console.log(window);
+        // console.log(this === window);
+
+        // this.nombre = "Contexto Global";
+        // console.log(this.nombre);
+
+        // function imprimir() {
+        //     console.log(this.nombre);
+        // }
+
+        // imprimir();
+
+        // const obj = {
+        //     nombre: "Contexto Objeto",
+        //     imprimir: function() {
+        //         console.log(this.nombre);
+        //     }
+        // }
+
+        // obj.imprimir();
+
+        // const obj2 = {
+        //     nombre: "Contexto Objeto 2",
+        //     imprimir
+        // }
+
+        // obj2.imprimir();
+
+        // const obj3 = {
+        //     nombre: "Contexto Objeto 3",
+        //     //Mantiene el enlace del contexto donde se creó, la arrow function no maneja su propio scope, por ende el .this lo agarra del contexto en el que se creó.
+        //     imprimir: () => {
+        //         console.log(this.nombre);
+        //     }
+        // }
+
+        // obj3.imprimir();
+
+        // //Función constructora con scope propio
+        // function Persona(nombre) {
+        //     // const that = this;
+        //     this.nombre = nombre;
+
+        //     // return console.log(this.nombre);
+
+        //     // return function() {
+        //     //     console.log(that.nombre);
+        //     // }
+
+        //     return () => console.log(this.nombre);
+        // }
+
+        // let juan = new Persona("Juan");
+        // juan();
+
         console.log(this);
-        console.log(window);
-        console.log(this === window);
+        this.lugar = "Contexto Global";
 
-        this.nombre = "Contexto Global";
-        console.log(this.nombre);
-
-        function imprimir() {
-            console.log(this.nombre);
+        function saludar(saludo, aQuien) {
+            console.log(`${saludo} ${aQuien} desde el ${this.lugar}`);
         }
 
-        imprimir();
+        saludar("Hola", "Lucia");
 
         const obj = {
-            nombre: "Contexto Objeto",
-            imprimir: function() {
-                console.log(this.nombre);
+            lugar: "Contexto Objeto"
+        }
+
+        //Contexto Objeto
+        saludar.call(obj, "Hola", "Juan");
+
+        //Contexto Global
+        saludar.call(null, "Hola", "Juan");
+        saludar.call(this, "Hola", "Juan");
+
+        //Contexto Objeto
+        saludar.apply(obj, ["Chau", "Ronquillo"]);
+
+        //Contexto Global
+        saludar.apply(null, ["Chau", "Ronquillo"]);
+        saludar.apply(this, ["Chau", "Ronquillo"]);
+
+        this.nombre = "Window"
+
+        const persona = {
+            nombre: "Juan",
+            saludar: function() {
+                console.log(`¡Hola! ${this.nombre}`);
             }
         }
 
-        obj.imprimir();
+        persona.saludar();
 
-        const obj2 = {
-            nombre: "Contexto Objeto 2",
-            imprimir
+        const otraPersona = {
+            //Bind enlaza el contexto de lo que desees
+            saludar: persona.saludar.bind(persona)
         }
 
-        obj2.imprimir();
-
-        const obj3 = {
-            nombre: "Contexto Objeto 3",
-            //Mantiene el enlace del contexto donde se creó, la arrow function no maneja su propio scope, por ende el .this lo agarra del contexto en el que se creó.
-            imprimir: () => {
-                console.log(this.nombre);
-            }
-        }
-
-        obj3.imprimir();
-
-        //Función constructora con scope propio
-        function Persona(nombre) {
-            // const that = this;
-            this.nombre = nombre;
-
-            // return console.log(this.nombre);
-
-            // return function() {
-            //     console.log(that.nombre);
-            // }
-
-            return () => console.log(this.nombre);
-        }
-
-        let juan = new Persona("Juan");
-        juan();
+        otraPersona.saludar();
         
     </script>
 </body>
