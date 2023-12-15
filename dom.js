@@ -133,21 +133,40 @@
 // $card.classList.toggle("opacity-80", "sepia");
 
 // Clase 66 DOM: Texto y HTML
-const $whatIsDOM = document.getElementById("que-es");
+// const $whatIsDOM = document.getElementById("que-es");
 
-let text = `
-    <p>
-    El Modelo de Objetos del Documento (<b><i>DOM - Document Object Model</i></b>) es un API para documentos HTML y XML.
-    </p>
-    <p>
-    Éste proveé una representación estructural del documento, permitiendo modificar su contenido y presentación visual mediante código JS.
-    </p>
-    <p>
-    <mark>El DOM no es parte de la especificación de JavaScript, es una API para los navegadores.</mark>
-    </p>
-`;
+// let text = `
+//     <p>
+//     El Modelo de Objetos del Documento (<b><i>DOM - Document Object Model</i></b>) es un API para documentos HTML y XML.
+//     </p>
+//     <p>
+//     Éste proveé una representación estructural del documento, permitiendo modificar su contenido y presentación visual mediante código JS.
+//     </p>
+//     <p>
+//     <mark>El DOM no es parte de la especificación de JavaScript, es una API para los navegadores.</mark>
+//     </p>
+// `;
 
 //$whatIsDOM.innerText = text;
-$whatIsDOM.textContent = text;
-$whatIsDOM.innerHTML = text;
-$whatIsDOM.outerHTML = text;
+// $whatIsDOM.textContent = text;
+// $whatIsDOM.innerHTML = text;
+// $whatIsDOM.outerHTML = text;
+
+const $cards = document.querySelector(".cards");
+
+console.log($cards);
+console.log($cards.children);
+console.log($cards.childNodes);
+console.log($cards.children[2]);
+console.log($cards.parentElement);
+console.log($cards.parentNode);
+console.log($cards.firstChild);
+console.log($cards.firstElementChild);
+console.log($cards.lastChild);
+console.log($cards.lastElementChild);
+console.log($cards.previousSibling);
+console.log($cards.previousElementSibling);
+console.log($cards.nextSibling);
+console.log($cards.nextElementSibling);
+console.log($cards.closest("div"));
+console.log($cards.children[3].closest("section"));
