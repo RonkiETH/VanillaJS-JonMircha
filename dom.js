@@ -75,38 +75,59 @@
 // console.log($linkDOM.hasAttribute("data-id"));
 
 // Clase 64 Estilos y Variables CSS
-const $linkDOM = document.querySelector(".link-dom");
+// const $linkDOM = document.querySelector(".link-dom");
 
-console.log($linkDOM.style);
-console.log($linkDOM.getAttribute("style"));
-console.log($linkDOM.style.backgroundColor);
-console.log($linkDOM.style.color);
-console.log(window.getComputedStyle($linkDOM));
-console.log(getComputedStyle($linkDOM).getPropertyValue("color"));
+// console.log($linkDOM.style);
+// console.log($linkDOM.getAttribute("style"));
+// console.log($linkDOM.style.backgroundColor);
+// console.log($linkDOM.style.color);
+// console.log(window.getComputedStyle($linkDOM));
+// console.log(getComputedStyle($linkDOM).getPropertyValue("color"));
 
-$linkDOM.style.setProperty("text-decoration", "none");
-$linkDOM.style.setProperty("display", "block");
-$linkDOM.style.width = "50%";
-$linkDOM.style.textAlign = "center";
-$linkDOM.style.marginLeft = "auto";
-$linkDOM.style.marginRight = "auto";
-$linkDOM.style.padding = "1rem";
-$linkDOM.style.borderRadius = ".5rem";
-console.log($linkDOM.getAttribute("style"));
-console.log(getComputedStyle($linkDOM));
+// $linkDOM.style.setProperty("text-decoration", "none");
+// $linkDOM.style.setProperty("display", "block");
+// $linkDOM.style.width = "50%";
+// $linkDOM.style.textAlign = "center";
+// $linkDOM.style.marginLeft = "auto";
+// $linkDOM.style.marginRight = "auto";
+// $linkDOM.style.padding = "1rem";
+// $linkDOM.style.borderRadius = ".5rem";
+// console.log($linkDOM.getAttribute("style"));
+// console.log(getComputedStyle($linkDOM));
 
-//Variables CSS - Custom Properties CSS;
-const $html = document.documentElement,
-    $body = document.body;
+ //Variables CSS - Custom Properties CSS;
+// const $html = document.documentElement,
+//     $body = document.body;
 
-let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color"),
-    varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color");
+// let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color"),
+//     varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color");
 
-console.log(varDarkColor, varYellowColor);
+// console.log(varDarkColor, varYellowColor);
 
-$body.style.backgroundColor = varDarkColor;
-$body.style.color = varYellowColor;
+// $body.style.backgroundColor = varDarkColor;
+// $body.style.color = varYellowColor;
 
-$html.style.setProperty("--dark-color", "#000");
-varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
-$body.style.setProperty("background-color", varDarkColor);
+// $html.style.setProperty("--dark-color", "#000");
+// varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
+// $body.style.setProperty("background-color", varDarkColor);
+const $card = document.querySelector(".card");
+
+console.log($card);
+console.log($card.className);
+console.log($card.classList);
+console.log($card.classList.contains("rotate-45"));
+$card.classList.add("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+console.log($card.className);
+console.log($card.classList);
+$card.classList.remove("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+$card.classList.toggle("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+$card.classList.toggle("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+$card.classList.toggle("rotate-45");
+$card.classList.replace("rotate-45", "rotate-135");
+$card.classList.add("opacity-80", "sepia");
+$card.classList.remove("opacity-80", "sepia");
+$card.classList.toggle("opacity-80", "sepia");
