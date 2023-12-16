@@ -284,18 +284,56 @@
 
 // $cards.appendChild($fragment);
 
-const $cards = document.querySelector(".cards"),
-    $newCard = document.createElement("figure"),
-    $cloneCards = $cards.cloneNode(true);
+// Clase 70 DOM Modificación de Elementos OLD
 
-$newCard.innerHTML = `
+// const $cards = document.querySelector(".cards"),
+//     $newCard = document.createElement("figure"),
+//     $cloneCards = $cards.cloneNode(true);
+
+// $newCard.innerHTML = `
+//     <img src="https://picsum.photos/seed/tech/200/200/" alt="Lucas">
+//     <figcaption>Lucas</figcaption>
+// `;
+
+// $newCard.classList.add("card");
+ // $cards.replaceChild($newCard, $cards.children[2]);
+ // $cards.insertBefore($newCard, $cards.firstElementChild);
+// $cards.removeChild($cards.lastElementChild);
+// document.body.appendChild($cloneCards);
+
+/* **********     Curso JavaScript: 71. DOM: Modificando Elementos (Cool Style) - #jonmircha     ********** */
+/*
+.insertAdjacent...
+  .insertAdjacentElement(position, el)
+  .insertAdjacentHTML(position, html)
+  .insertAdjacentText(position, text)
+
+Posiciones:
+  beforebegin(hermano anterior)
+  afterbegin(primer hijo)
+  beforeend(ultimo hijo)
+  afterend(hermano siguiente)
+*/
+
+const $cards = document.querySelector(".cards"),
+    $newCard = document.createElement("figure");
+
+let $contentCard = `
     <img src="https://picsum.photos/seed/tech/200/200/" alt="Lucas">
-    <figcaption>Lucas</figcaption>
+    <figcaption></figcaption>
 `;
 
 $newCard.classList.add("card");
-// $cards.replaceChild($newCard, $cards.children[2]);
-// $cards.insertBefore($newCard, $cards.firstElementChild);
-// $cards.removeChild($cards.lastElementChild);
-document.body.appendChild($cloneCards);
 
+// $cards.insertAdjacentHTML("beforebegin", $newCard);
+$newCard.insertAdjacentHTML("beforeend", $contentCard);
+$newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Lucas");
+
+$cards.insertAdjacentHTML("afterbegin", $newCard);
+
+// $cards.prepend($newCard);
+
+
+
+// $cards.insertAdjacentHTML("beforeend", $newCard);
+// $cards.insertAdjacentHTML("afterend", $newCard);
