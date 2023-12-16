@@ -171,74 +171,116 @@
 // console.log($cards.closest("div"));
 // console.log($cards.children[3].closest("section"));
 
-const $figure = document.createElement("figure"),
-    $img = document.createElement("img"),
-    $figcaption = document.createElement("figcaption"),
-    $figcaptionText = document.createTextNode("Animals"),
-    $cards = document.querySelector(".cards"),
-    $figure2 = document.createElement("figure");
+//Clase 68 DOM: Fragmentos y Elementos
 
-$img.setAttribute("src","https://picsum.photos/seed/animals/200/200/");
-$img.setAttribute("alt","Animals");
-$figure.classList.add("card");
+// const $figure = document.createElement("figure"),
+//     $img = document.createElement("img"),
+//     $figcaption = document.createElement("figcaption"),
+//     $figcaptionText = document.createTextNode("Animals"),
+//     $cards = document.querySelector(".cards"),
+//     $figure2 = document.createElement("figure");
 
-$figcaption.appendChild($figcaptionText);
-$figure.appendChild($img);
-$figure.appendChild($figcaption);
-$cards.appendChild($figure);
+// $img.setAttribute("src","https://picsum.photos/seed/animals/200/200/");
+// $img.setAttribute("alt","Animals");
+// $figure.classList.add("card");
 
-$figure2.innerHTML = `
-    <img src="https://picsum.photos/seed/people/200/200/" alt="People">
-    <figcaption>People</figcaption>
-`;
+// $figcaption.appendChild($figcaptionText);
+// $figure.appendChild($img);
+// $figure.appendChild($figcaption);
+// $cards.appendChild($figure);
 
-$figure2.classList.add("card");
-$cards.appendChild($figure2);
+// $figure2.innerHTML = `
+//     <img src="https://picsum.photos/seed/people/200/200/" alt="People">
+//     <figcaption>People</figcaption>
+// `;
 
-const estaciones = ["Primavera", "Verano", "Otoño", "Invierno"],
-    $ul = document.createElement("ul");
+// $figure2.classList.add("card");
+// $cards.appendChild($figure2);
 
-document.write("<h3>Estaciones del Año</h3>");
-document.body.appendChild($ul);
-estaciones.forEach(estacion => {
-    const $li = document.createElement("li");
-    $li.textContent = estacion;
-    $ul.appendChild($li);
+// const estaciones = ["Primavera", "Verano", "Otoño", "Invierno"],
+//     $ul = document.createElement("ul");
+
+// document.write("<h3>Estaciones del Año</h3>");
+// document.body.appendChild($ul);
+// estaciones.forEach(estacion => {
+//     const $li = document.createElement("li");
+//     $li.textContent = estacion;
+//     $ul.appendChild($li);
+// });
+
+// const continentes = ["África", "América", "Asia", "Europa", "Oceanía"],
+//     $ul2 = document.createElement("ul");
+
+// document.write("<h3>Continentes del Mundo</h3>");
+// document.body.appendChild($ul2);
+// $ul2.innerHTML = "";
+// continentes.forEach((continente) => $ul2.innerHTML += `<li>${continente}</li>`);
+
+
+// //Manera más óptima para insertar elementos en el DOM
+// const meses = [
+//     "Enero",
+//     "Febrero",
+//     "Marzo",
+//     "Abril",
+//     "Mayo",
+//     "Junio",
+//     "Julio",
+//     "Agosto",
+//     "Septiembre",
+//     "Octubre",
+//     "Noviembre",
+//     "Diciembre"
+// ],
+//     $ul3 = document.createElement("ul"),
+//     $fragment = document.createDocumentFragment();
+
+//     meses.forEach(mes => {
+//         const $li = document.createElement("li");
+//         $li.textContent = mes;
+//         $fragment.appendChild($li);
+//     })
+
+//     document.write("<h3>Meses del Año</h3>")
+//     $ul3.appendChild($fragment);
+//     document.body.appendChild($ul);
+
+// Clase 69: DOM - Templates HTML
+
+const $cards = document.querySelector(".cards"),
+    $template = document.getElementById("template-card").content,
+    $fragment = document.createDocumentFragment(),
+    cardContent = [
+        {
+            title: "Tecnología",
+            img: "https://picsum.photos/seed/tech/200/200/"
+        },
+        {
+            title: "Animales",
+            img: "https://picsum.photos/seed/animals/200/200/"
+        },
+        {
+            title: "Gente",
+            img: "https://picsum.photos/seed/people/200/200/"
+        },
+        {
+            title: "Arquitectura",
+            img: "https://picsum.photos/seed/arch/200/200/"
+        },
+        {
+            title: "Naturaleza",
+            img: "https://picsum.photos/seed/nature/200/200/"
+        }
+    ]
+
+cardContent.forEach(el => {
+    $template.querySelector("img").setAttribute("src", el.img);
+    $template.querySelector("img").setAttribute("alt", el.title);
+    $template.querySelector("figcaption").textContent = el.title;
+
+    let $clone = document.importNode($template, true);
+        $fragment.appendChild($clone);
 });
 
-const continentes = ["África", "América", "Asia", "Europa", "Oceanía"],
-    $ul2 = document.createElement("ul");
+$cards.appendChild($fragment);
 
-document.write("<h3>Continentes del Mundo</h3>");
-document.body.appendChild($ul2);
-$ul2.innerHTML = "";
-continentes.forEach((continente) => $ul2.innerHTML += `<li>${continente}</li>`);
-
-
-//Manera más óptima para insertar elementos en el DOM
-const meses = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre"
-],
-    $ul3 = document.createElement("ul"),
-    $fragment = document.createDocumentFragment();
-
-    meses.forEach(mes => {
-        const $li = document.createElement("li");
-        $li.textContent = mes;
-        $fragment.appendChild($li);
-    })
-
-    document.write("<h3>Meses del Año</h3>")
-    $ul3.appendChild($fragment);
-    document.body.appendChild($ul);
