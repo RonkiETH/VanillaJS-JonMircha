@@ -247,40 +247,55 @@
 
 // Clase 69: DOM - Templates HTML
 
+// const $cards = document.querySelector(".cards"),
+//     $template = document.getElementById("template-card").content,
+//     $fragment = document.createDocumentFragment(),
+//     cardContent = [
+//         {
+//             title: "Tecnología",
+//             img: "https://picsum.photos/seed/tech/200/200/"
+//         },
+//         {
+//             title: "Animales",
+//             img: "https://picsum.photos/seed/animals/200/200/"
+//         },
+//         {
+//             title: "Gente",
+//             img: "https://picsum.photos/seed/people/200/200/"
+//         },
+//         {
+//             title: "Arquitectura",
+//             img: "https://picsum.photos/seed/arch/200/200/"
+//         },
+//         {
+//             title: "Naturaleza",
+//             img: "https://picsum.photos/seed/nature/200/200/"
+//         }
+//     ]
+
+// cardContent.forEach(el => {
+//     $template.querySelector("img").setAttribute("src", el.img);
+//     $template.querySelector("img").setAttribute("alt", el.title);
+//     $template.querySelector("figcaption").textContent = el.title;
+
+//     let $clone = document.importNode($template, true);
+//         $fragment.appendChild($clone);
+// });
+
+// $cards.appendChild($fragment);
+
 const $cards = document.querySelector(".cards"),
-    $template = document.getElementById("template-card").content,
-    $fragment = document.createDocumentFragment(),
-    cardContent = [
-        {
-            title: "Tecnología",
-            img: "https://picsum.photos/seed/tech/200/200/"
-        },
-        {
-            title: "Animales",
-            img: "https://picsum.photos/seed/animals/200/200/"
-        },
-        {
-            title: "Gente",
-            img: "https://picsum.photos/seed/people/200/200/"
-        },
-        {
-            title: "Arquitectura",
-            img: "https://picsum.photos/seed/arch/200/200/"
-        },
-        {
-            title: "Naturaleza",
-            img: "https://picsum.photos/seed/nature/200/200/"
-        }
-    ]
+    $newCard = document.createElement("figure"),
+    $cloneCards = $cards.cloneNode(true);
 
-cardContent.forEach(el => {
-    $template.querySelector("img").setAttribute("src", el.img);
-    $template.querySelector("img").setAttribute("alt", el.title);
-    $template.querySelector("figcaption").textContent = el.title;
+$newCard.innerHTML = `
+    <img src="https://picsum.photos/seed/tech/200/200/" alt="Lucas">
+    <figcaption>Lucas</figcaption>
+`;
 
-    let $clone = document.importNode($template, true);
-        $fragment.appendChild($clone);
-});
-
-$cards.appendChild($fragment);
+$newCard.classList.add("card");
+// $cards.replaceChild($newCard, $cards.children[2]);
+// $cards.insertBefore($newCard, $cards.firstElementChild);
+// $cards.removeChild($cards.lastElementChild);
+document.body.appendChild($cloneCards);
 
