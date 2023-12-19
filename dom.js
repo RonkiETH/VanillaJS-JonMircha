@@ -315,25 +315,48 @@ Posiciones:
   afterend(hermano siguiente)
 */
 
-const $cards = document.querySelector(".cards"),
-    $newCard = document.createElement("figure");
+// const $cards = document.querySelector(".cards"),
+//     $newCard = document.createElement("figure");
 
-let $contentCard = `
-    <img src="https://picsum.photos/seed/tech/200/200/" alt="Lucas">
-    <figcaption></figcaption>
-`;
+// let $contentCard = `
+//     <img src="https://picsum.photos/seed/tech/200/200/" alt="Lucas">
+//     <figcaption></figcaption>
+// `;
 
-$newCard.classList.add("card");
+// $newCard.classList.add("card");
 
-// $cards.insertAdjacentHTML("beforebegin", $newCard);
-$newCard.insertAdjacentHTML("beforeend", $contentCard);
-$newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Lucas");
+ // $cards.insertAdjacentHTML("beforebegin", $newCard);
+// $newCard.insertAdjacentHTML("beforeend", $contentCard);
+// $newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Lucas");
 
-$cards.insertAdjacentHTML("afterbegin", $newCard);
+// $cards.insertAdjacentHTML("afterbegin", $newCard);
 
 // $cards.prepend($newCard);
 
-
-
 // $cards.insertAdjacentHTML("beforeend", $newCard);
 // $cards.insertAdjacentHTML("afterend", $newCard);
+
+function holaMundo() {
+  alert("Hola Mundo");
+  console.log(event);
+}
+
+const $eventoSemantico = document.getElementById("evento-semantico"),
+  $eventoMultiple = document.getElementById("evento-multiple");
+
+$eventoSemantico.onclick = holaMundo;
+
+$eventoSemantico.onclick = function(e) {
+  alert("Hola Mundo Manejador de Eventos Semántico");
+  console.log(e);
+  console.log(event);
+}
+
+$eventoMultiple.addEventListener("click", holaMundo);
+$eventoMultiple.addEventListener("click", (e) => {
+  alert("Hola Mundo Manejador de Eventos Múltiple");
+  console.log(e);
+  console.log(e.type);
+  console.log(e.target);
+  console.log(event);
+});
