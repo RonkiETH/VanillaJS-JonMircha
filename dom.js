@@ -337,66 +337,66 @@ Posiciones:
 // $cards.insertAdjacentHTML("afterend", $newCard);
 
 // Clase 73 DOM
-function holaMundo() {
-  alert("Hola Mundo");
-  console.log(event);
-}
+// function holaMundo() {
+//   alert("Hola Mundo");
+//   console.log(event);
+// }
 
-function saludar(nombre = "Desconocido") {
-alert(`Hola ${nombre}`)
-console.log(event);
-}
+// function saludar(nombre = "Desconocido") {
+// alert(`Hola ${nombre}`)
+// console.log(event);
+// }
 
-const $eventoSemantico = document.getElementById("evento-semantico"),
-  $eventoMultiple = document.getElementById("evento-multiple"),
-  $eventoRemover = document.getElementById("evento-remover");
+// const $eventoSemantico = document.getElementById("evento-semantico"),
+//   $eventoMultiple = document.getElementById("evento-multiple"),
+//   $eventoRemover = document.getElementById("evento-remover");
 
-$eventoSemantico.onclick = holaMundo;
+// $eventoSemantico.onclick = holaMundo;
 
-$eventoSemantico.onclick = function(e) {
-  alert("Hola Mundo Manejador de Eventos Semántico");
-  console.log(e);
-  console.log(event);
-}
+// $eventoSemantico.onclick = function(e) {
+//   alert("Hola Mundo Manejador de Eventos Semántico");
+//   console.log(e);
+//   console.log(event);
+// }
 
-$eventoMultiple.addEventListener("click", holaMundo);
-$eventoMultiple.addEventListener("click", (e) => {
-  alert("Hola Mundo Manejador de Eventos Múltiple");
-  console.log(e);
-  console.log(e.type);
-  console.log(e.target);
-  console.log(event);
-});
+// $eventoMultiple.addEventListener("click", holaMundo);
+// $eventoMultiple.addEventListener("click", (e) => {
+//   alert("Hola Mundo Manejador de Eventos Múltiple");
+//   console.log(e);
+//   console.log(e.type);
+//   console.log(e.target);
+//   console.log(event);
+// });
 
-$eventoMultiple.addEventListener("click", () => {
-  saludar();
-  saludar("Ronki");
-});
+// $eventoMultiple.addEventListener("click", () => {
+//   saludar();
+//   saludar("Ronki");
+// });
 
-const removerDobleClick = (e) => {
-  alert(`Removiendo el evento de tipo: ${e.type}`);
-  console.log(e);
-  $eventoRemover.removeEventListener("dblclick",removerDobleClick);
-  $eventoRemover.disabled = true;
-}
+// const removerDobleClick = (e) => {
+//   alert(`Removiendo el evento de tipo: ${e.type}`);
+//   console.log(e);
+//   $eventoRemover.removeEventListener("dblclick",removerDobleClick);
+//   $eventoRemover.disabled = true;
+// }
 
-$eventoRemover.addEventListener("dblclick", removerDobleClick);
+// $eventoRemover.addEventListener("dblclick", removerDobleClick);
 
 
 
-// Clase 74 DOM
+// // Clase 74 DOM
 
-const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
-  $linkEventos = document.querySelector(".eventos-flujo a");
+// const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
+//   $linkEventos = document.querySelector(".eventos-flujo a");
 
-function flujoEventos(e) {
-  console.log(`Hola te saluda ${this.className}, el click lo originó ${e.target.className}`);
-  // e.stopPropagation();
-}
+// function flujoEventos(e) {
+//   console.log(`Hola te saluda ${this.className}, el click lo originó ${e.target.className}`);
+//   // e.stopPropagation();
+// }
 
 // console.log($divsEventos);
 
-$divsEventos.forEach(div => {
+// $divsEventos.forEach(div => {
   // Fase de burbuja, sin especificar o con un false
   // div.addEventListener("click", flujoEventos)
   // div.addEventListener("click", flujoEventos, false)
@@ -407,7 +407,7 @@ $divsEventos.forEach(div => {
   //   capture: false,
   //   once: true
   // })
-})
+// })
 
 // Clase 75 - STOP PROPAGATION Y PREVENT DEFAULT
 // $linkEventos.addEventListener("click", (e) => {
@@ -417,15 +417,49 @@ $divsEventos.forEach(div => {
 // })
 
 // Clase 76 DELEGACIÓN DE EVENTOS
-document.addEventListener("click", (e) => {
-  console.log("Click en", e.target);
+// document.addEventListener("click", (e) => {
+//   console.log("Click en", e.target);
 
-  if(e.target.matches(".eventos-flujo div")) {
-    flujoEventos(e);
-  }
+//   if(e.target.matches(".eventos-flujo div")) {
+//     flujoEventos(e);
+//   }
 
-  if(e.target.matches(".eventos-flujo a")) {
-    alert("Hola");
-    e.preventDefault();
-  }
+//   if(e.target.matches(".eventos-flujo a")) {
+//     alert("Hola");
+//     e.preventDefault();
+//   }
+// })
+
+// Clase 77 BOM
+window.addEventListener("resize", (e) => {
+  console.clear();
+  console.log("Evento Resize");
+  console.log(window.innerWidth);
+  console.log(window.innerHeight);
+  console.log(window.outerWidth);
+  console.log(window.outerHeight);
+  
+  console.log(e);
+})
+
+window.addEventListener("scroll", e => {
+  console.clear();
+  console.log("Evento Scroll");
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e);
+})
+
+window.addEventListener("load", e => {
+  console.log("Evento Load");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+})
+
+document.addEventListener("DOMContendLoaded", e => {
+  console.log("Evento DOMContentLoad");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
 })
