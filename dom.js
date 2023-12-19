@@ -336,6 +336,7 @@ Posiciones:
 // $cards.insertAdjacentHTML("beforeend", $newCard);
 // $cards.insertAdjacentHTML("afterend", $newCard);
 
+// Clase 73 DOM
 function holaMundo() {
   alert("Hola Mundo");
   console.log(event);
@@ -381,3 +382,25 @@ const removerDobleClick = (e) => {
 
 $eventoRemover.addEventListener("dblclick", removerDobleClick);
 
+// Clase 74 DOM
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div");
+
+function flujoEventos(e) {
+  console.log(`Hola te saluda ${this.className}, el click lo originó ${e.target.className}`);
+}
+
+console.log($divsEventos);
+
+$divsEventos.forEach(div => {
+  // Fase de burbuja, sin especificar o con un false
+  // div.addEventListener("click", flujoEventos)
+  // div.addEventListener("click", flujoEventos, false)
+
+  // Fase de captura
+  // div.addEventListener("click", flujoEventos, true)
+  div.addEventListener("click", flujoEventos, {
+    capture: false,
+    once: true
+  })
+})
