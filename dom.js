@@ -469,21 +469,56 @@ Posiciones:
 // confirm("Confirmación");
 // prompt("Aviso");
 
-const $btnAbrir = document.getElementById("abrir-ventana"),
-  $btnCerrar = document.getElementById("cerrar-ventana"),
-  $btnImprimir = document.getElementById("imprimir-ventana");
+// const $btnAbrir = document.getElementById("abrir-ventana"),
+//   $btnCerrar = document.getElementById("cerrar-ventana"),
+//   $btnImprimir = document.getElementById("imprimir-ventana");
 
-  let ventana;
+//   let ventana;
 
-$btnAbrir.addEventListener("click", e => { 
-  ventana = window.open("https://jonmircha.com");
-});
+// $btnAbrir.addEventListener("click", e => { 
+//   ventana = window.open("https://jonmircha.com");
+// });
 
-$btnCerrar.addEventListener("click", e => {
-  // window.close();
-  ventana.close();
-});
+// $btnCerrar.addEventListener("click", e => {
+//   // window.close();
+//   ventana.close();
+// });
 
-$btnImprimir.addEventListener("click", e => {
-  window.print();
-});
+// $btnImprimir.addEventListener("click", e => {
+//   window.print();
+// });
+
+// Clase 79 BOM - Objetos: URL, Historial y Navegador
+
+// console.log("Objeto URL (location)");
+
+// console.log(location);
+// console.log(location.origin);
+// console.log(location.protocol);
+// console.log(location.host);
+// console.log(location.hostname);
+// console.log(location.port);
+// console.log(location.href);
+// console.log(location.hash);
+// console.log(location.search);
+// console.log(location.pathname);
+// location.reload()
+
+// console.log("Objeto Historial (history)");
+
+// console.log(history);
+// console.log(history.length);
+// history.back(2);
+// history.forward(1);
+// history.go(3);
+
+console.log("Objeto Navegador (navigator)");
+console.log(navigator.connection);
+console.log(navigator.geolocation);
+console.log(navigator.mediaDevices);
+console.log(navigator.mimeTypes);
+console.log(navigator.onLine);
+console.log(navigator.serviceWorker);
+console.log(navigator.storage);
+console.log(navigator.usb);
+console.log(navigator.userAgent);
