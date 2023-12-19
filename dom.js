@@ -431,35 +431,59 @@ Posiciones:
 // })
 
 // Clase 77 BOM
-window.addEventListener("resize", (e) => {
-  console.clear();
-  console.log("Evento Resize");
-  console.log(window.innerWidth);
-  console.log(window.innerHeight);
-  console.log(window.outerWidth);
-  console.log(window.outerHeight);
+// window.addEventListener("resize", (e) => {
+//   console.clear();
+//   console.log("Evento Resize");
+//   console.log(window.innerWidth);
+//   console.log(window.innerHeight);
+//   console.log(window.outerWidth);
+//   console.log(window.outerHeight);
   
-  console.log(e);
-})
+//   console.log(e);
+// })
 
-window.addEventListener("scroll", e => {
-  console.clear();
-  console.log("Evento Scroll");
-  console.log(window.scrollX);
-  console.log(window.scrollY);
-  console.log(e);
-})
+// window.addEventListener("scroll", e => {
+//   console.clear();
+//   console.log("Evento Scroll");
+//   console.log(window.scrollX);
+//   console.log(window.scrollY);
+//   console.log(e);
+// })
 
-window.addEventListener("load", e => {
-  console.log("Evento Load");
-  console.log(window.screenX);
-  console.log(window.screenY);
-  console.log(e);
-})
+// window.addEventListener("load", e => {
+//   console.log("Evento Load");
+//   console.log(window.screenX);
+//   console.log(window.screenY);
+//   console.log(e);
+// })
 
-document.addEventListener("DOMContendLoaded", e => {
-  console.log("Evento DOMContentLoad");
-  console.log(window.screenX);
-  console.log(window.screenY);
-  console.log(e);
-})
+// document.addEventListener("DOMContendLoaded", e => {
+//   console.log("Evento DOMContentLoad");
+//   console.log(window.screenX);
+//   console.log(window.screenY);
+//   console.log(e);
+// })
+
+// Clase 78 BOM - Métodos
+// alert("Alerta");
+// confirm("Confirmación");
+// prompt("Aviso");
+
+const $btnAbrir = document.getElementById("abrir-ventana"),
+  $btnCerrar = document.getElementById("cerrar-ventana"),
+  $btnImprimir = document.getElementById("imprimir-ventana");
+
+  let ventana;
+
+$btnAbrir.addEventListener("click", e => { 
+  ventana = window.open("https://jonmircha.com");
+});
+
+$btnCerrar.addEventListener("click", e => {
+  // window.close();
+  ventana.close();
+});
+
+$btnImprimir.addEventListener("click", e => {
+  window.print();
+});
