@@ -384,23 +384,32 @@ $eventoRemover.addEventListener("dblclick", removerDobleClick);
 
 // Clase 74 DOM
 
-const $divsEventos = document.querySelectorAll(".eventos-flujo div");
+const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
+  $linkEventos = document.querySelector(".eventos-flujo a");
 
 function flujoEventos(e) {
   console.log(`Hola te saluda ${this.className}, el click lo originó ${e.target.className}`);
+  e.stopPropagation();
 }
 
 console.log($divsEventos);
 
 $divsEventos.forEach(div => {
   // Fase de burbuja, sin especificar o con un false
-  // div.addEventListener("click", flujoEventos)
+  div.addEventListener("click", flujoEventos)
   // div.addEventListener("click", flujoEventos, false)
 
   // Fase de captura
   // div.addEventListener("click", flujoEventos, true)
-  div.addEventListener("click", flujoEventos, {
-    capture: false,
-    once: true
-  })
+  // div.addEventListener("click", flujoEventos, {
+  //   capture: false,
+  //   once: true
+  // })
+})
+
+// Clase 75 - STOP PROPAGATION Y PREVENT DEFAULT
+$linkEventos.addEventListener("click", (e) => {
+  alert("Hola");
+  e.preventDefault();
+  e.stopPropagation();
 })
