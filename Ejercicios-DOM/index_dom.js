@@ -1,6 +1,6 @@
 import hamburgerMenu from "./menu_hamburgesa.js";
 import { digitalClock, alarm } from "./reloj.js";
-import { shortcuts } from "./teclado.js";
+import { shortcuts, moveBall } from "./teclado.js";
 
 document.addEventListener("DOMContentLoaded", (e) => {
     hamburgerMenu(".panel-btn", ".panel", ".menu a");
@@ -10,13 +10,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 document.addEventListener("keydown", (e) => {
     shortcuts(e);
+    moveBall(e, ".ball", ".stage")
 })
 
 // document.addEventListener("keyup", (e) => {
 //     shortcuts(e);
 // })
 
-document.addEventListener("keypress", (e) => {
-    shortcuts(e);
-})
+// document.addEventListener("keypress", (e) => {
+//     shortcuts(e);
+// })
 
