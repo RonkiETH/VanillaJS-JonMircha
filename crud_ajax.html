@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud API Rest Ajax</title>
+</head>
+<body>
+    <h1>Crud API Rest Ajax</h1>
+    <section id="crud">
+        <article>
+            <h2 class="crud-title">Agregar Santo</h2>
+            <form action="" class="crud-form">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <br>
+                <input type="text" name="constelacion" placeholder="Constelación" required>
+                <br>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </article>
+        <article>
+            <h2>Ver Santos</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Constelación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </article>
+    </section>
+    <template id="crud-template">
+        <tr>
+            <td class="name"></td>
+            <td class="constellation"></td>
+            <td>
+                <button class="edit">Editar</button>
+                <button class="delete">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+    <script>
+        const $table = document.querySelector(".crud-table"),
+            $form = document.querySelector(".crud-form"),
+            $title = document.querySelector(".crud-title"),
+            $template = document.getElementById("crud-template").content,
+            $fragment = document.createDocumentFragment();
+
+            const ajax = (options) => {
+                let { url, method, success, error, data } = options;
+                const xhr = new XMLHttpRequest();
+
+                xhr.addEventListener("readystatechange", e => {
+                    if (xhr.readyState !== 4) return;
+
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        let json = JSON.parse(xhr.responseText);
+                        success(json);
+                    } else {
+                        let message = xhr.statusText || "Ocurrió un error";
+                        error(`Error ${xhr.status}: ${message}`)
+                    }
+                })
+
+                xhr.open(method || "GET", url);
+                xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+                xhr.send(JSON.stringify(data));
+            }
+
+            const getAll = () => {
+                ajax({
+                    url: "http://localhost:5555/santos",
+                    success: (res) => {
+                        console.log(res);
+                        res.forEach(el => {
+                            $template.querySelector(".name").textContent = el.nombre;
+
+                            $template.querySelector(".constellation").textContent = el.constelación;
+
+                            $template.querySelector(".edit").dataset.id = el.id;
+                            $template.querySelector(".edit").dataset.name = el.nombre;
+                            $template.querySelector(".edit").dataset.constellation = el.constelación;
+
+                            $template.querySelector(".delete").dataset.id = el.id;
+
+                            let $clone = document.importNode($template, true);
+                            $fragment.appendChild($clone);
+                        })
+
+                        $table.querySelector("tbody").appendChild($fragment);
+                    },
+                    error: (err) => {
+                        console.error(err);
+                        $table.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`);
+
+                        
+                    }
+                })
+            }
+
+            document.addEventListener("DOMContentLoaded", getAll);
+
+            document.addEventListener("submit", e => {
+                if(e.target === $form) {
+                    e.preventDefault();
+
+                    if(!e.target.id.value) {
+                        // Create - POST
+                        ajax({
+                            url: "http://localhost:5555/santos",
+                            method: "POST",
+                            success: (res) => location.reload(),
+                            error: (err) => $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                            data: {
+                                nombre: e.target.nombre.value,
+                                constelación: e.target.constelacion.value
+                            }
+                        })
+                    } else {
+                        // Update - PUT
+                        ajax({
+                            url: `http://localhost:5555/santos/${e.target.id.value}`,
+                            method: "PUT",
+                            success: (res) => location.reload(),
+                            error: (err) => $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                            data: {
+                                nombre: e.target.nombre.value,
+                                constelación: e.target.constelacion.value
+                            }
+                        })
+                    }
+                }
+            })
+
+            document.addEventListener("click", e => {
+                if(e.target.matches(".edit")) {
+                    $title.textContent = "Editar Santo"
+                    $form.nombre.value = e.target.dataset.name;
+                    $form.constelacion.value = e.target.dataset.constellation;
+                    $form.id.value = e.target.dataset.id;
+                }
+            })
+
+            document.addEventListener("click", e => {
+                if(e.target.matches(".delete")) {
+                    let isDelete = confirm(`¿Estás seguro de eliminar el id ${e.target.dataset.id}?`)
+
+                    if(isDelete) {
+                        // Delete - DELETE 
+                        ajax({
+                            url: `http://localhost:5555/santos/${e.target.dataset.id}`,
+                            method: "DELETE",
+                            success: (res) => location.reload(),
+                            error: (err) => $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                        })
+                    }
+                }
+            })
+
+    </script>
+</body>
+</html>
