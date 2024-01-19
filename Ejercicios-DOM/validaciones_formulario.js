@@ -29,4 +29,20 @@ export default function contactFormValidations() {
             }
         }
     })
+
+    document.addEventListener("submit", (e) => {
+
+        const $loader = document.querySelector(".contact-form-loader"),
+            $response = document.querySelector(".contact-form-response");
+
+        $loader.classList.remove("none");
+
+        setTimeout(() => {
+            $loader.classList.add("none");
+            $response.classList.remove("none");
+            $form.reset();
+
+            setTimeout(() => $response.classList.add("none"), 3000)
+        }, 2000)
+    })
 }
