@@ -59,22 +59,21 @@
             <div id="gmaps"></div>
         </section>
         <section id="seccion5" class="section">
-            <h2>Sección 5</h2>
-        </section>
-        <section id="seccion6" class="section">
-            <h2>Sección 6</h2>
-        </section>
-        <section id="seccion7" class="section">
-            <h2>Sección 7</h2>
-        </section>
-        <section id="seccion8" class="section">
-            <h2>Sección 8</h2>
-        </section>
-        <section id="seccion9" class="section">
-            <h2>Sección 9</h2>
-        </section>
-        <section id="seccion10" class="section">
-            <h2>Sección 10</h2>
+            <h2>Validaciones de Formulario</h2>
+            <form action="" class="contact-form">
+                <legend>Envíanos tus comentarios</legend>
+                <input type="text" name="name" placeholder="Escribe tu nombre" title="Nombre solo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                <input type="email" name="email" placeholder="Escribe tu email" title="Email incorrecto" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+                <input type="text" name="subject" placeholder="Asuntro a tratar" title="El asunto es requerido" required>
+                <textarea name="comments" cols="50" rows="5" placeholder="Escribe tus comentarios" data-pattern="^.{1,255}$" required></textarea>
+                <input type="submit" value="Enviar">
+                <div class="contact-form-loader none">
+                    <img src="assets/loader.svg" alt="Cargando">
+                </div>
+                <div class="contact-form-response none">
+                    <p>Los datos han sido enviados</p>
+                </div>
+            </form>
         </section>
     </main>
     <button class="scroll-top-btn hidden">&#11014;</button>
