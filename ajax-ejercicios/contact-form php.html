@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envío de Formularios con Fetch y FormSubmit</title>
+    <title>Envío de Formularios con Fetch y PHP</title>
     <style>
         html {
             box-sizing: border-box;
@@ -156,9 +156,10 @@
 
             $loader.classList.remove("none");
 
-            fetch("https://formsubmit.co/ajax/ronquillojuanignacio@gmail.com", {
+            fetch("assets/send_mail.php", {
                 method: "POST",
-                body: new FormData(e.target)
+                body: new FormData(e.target),
+                mode: "cors"
             })
                 .then(res => res.ok ? res.json() : Promise.reject(res))
                 .then(json => {
