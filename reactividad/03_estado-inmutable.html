@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reactividad del Estado</title>
+    <title>Estado Inmutable</title>
 </head>
 <body>
-    <h1>Reactividad del Estado</h1>
+    <h1>Estado Inmutable</h1>
     <form id="todo-form">
         <input type="text" id="todo-item" placeholder="Tarea por hacer">
         <input type="submit" value="Agregar">
@@ -52,10 +52,8 @@
         render();
     }
 
-    // Estado Mutable: Permite modificar al estado directamente, creando una copia del objeto y agregando otro elemento
-    const items = state.todoList;
-    items.push("Tarea 4");
-    console.log("Estado Mutable", state);
+    // Obtenemos una copia inmutable del State
+    const getState = () => JSON.parse(JSON.stringify(state));
 
     document.addEventListener("DOMContentLoaded", render);
 
@@ -64,6 +62,11 @@
         todoList: ["Tarea 1", "Tarea 2", "Tarea 3"],
         nombre: "Ronki"
     })
+
+    // Estado Mutable: Permite modificar al estado directamente, creando una copia del objeto y agregando otro elemento
+    const items = getState();
+    items.todoList.push("Tarea 4")
+    console.log("Estado Inmutable", state);
 
     document.addEventListener("submit", e => {
         if (!e.target.matches("#todo-form")) return false;
@@ -74,9 +77,10 @@
 
         if(!$item) return;
 
-        // Actualizamos State y UI
-        state.todoList.push($item.value);
-        render();
+        // Actualizamos State de forma reactiva
+        const lastState = getState()
+        lastState.todoList.push($item.value);
+        setState({ todoList: lastState.todoList });
 
         $item.value = "";
         $item.focus();
